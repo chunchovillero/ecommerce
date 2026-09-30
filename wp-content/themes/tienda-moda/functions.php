@@ -15,3 +15,4 @@ require_once get_theme_file_path( '/inc/product.php' );
 require_once get_theme_file_path( '/inc/product-admin.php' );
 require_once get_theme_file_path( '/inc/customizer-product.php' );
 require_once get_theme_file_path( '/inc/cart.php' );
+require_once get_theme_file_path( '/inc/checkout.php' );
