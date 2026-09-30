@@ -11,3 +11,4 @@ wp-config.php
 node_modules/
 vendor/
 uploads/
+.wordpress/

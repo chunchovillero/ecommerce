@@ -1,0 +1,59 @@
+services:
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${WP_DB_NAME:-wordpress}
+      MARIADB_USER: ${WP_DB_USER:-wordpress}
+      MARIADB_PASSWORD: ${WP_DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${WP_DB_ROOT_PASSWORD}
+    volumes:
+      - wordpress_db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WP_DB_NAME:-wordpress}
+      WORDPRESS_DB_USER: ${WP_DB_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-1}
+    volumes:
+      - wordpress_files:/var/www/html
+      - ./:/var/www/html/wp-content/themes/tienda-moda
+      - /dev/null:/var/www/html/wp-content/themes/tienda-moda/.env:ro
+      - theme_git_mask:/var/www/html/wp-content/themes/tienda-moda/.git
+
+  wpcli:
+    image: wordpress:cli-php8.3
+    profiles: ["tools"]
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${WP_DB_NAME:-wordpress}
+      WORDPRESS_DB_USER: ${WP_DB_USER:-wordpress}
+      WORDPRESS_DB_PASSWORD: ${WP_DB_PASSWORD}
+    volumes:
+      - wordpress_files:/var/www/html
+      - ./:/var/www/html/wp-content/themes/tienda-moda
+      - /dev/null:/var/www/html/wp-content/themes/tienda-moda/.env:ro
+      - theme_git_mask:/var/www/html/wp-content/themes/tienda-moda/.git
+    working_dir: /var/www/html
+
+volumes:
+  wordpress_db:
+  wordpress_files:
+  theme_git_mask:
