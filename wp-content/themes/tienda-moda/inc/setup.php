@@ -31,6 +31,10 @@ function tienda_moda_setup() {
 	register_nav_menus( array(
 		'primary' => __( 'Menú principal', 'tienda-moda' ),
 		'footer'  => __( 'Menú del pie de página', 'tienda-moda' ),
+		'footer-shop' => __( 'Menú Tienda del pie', 'tienda-moda' ),
+		'footer-help' => __( 'Menú Ayuda del pie', 'tienda-moda' ),
+		'footer-info' => __( 'Menú Información del pie', 'tienda-moda' ),
+		'legal'       => __( 'Menú legal', 'tienda-moda' ),
 	) );
 }
 add_action( 'after_setup_theme', 'tienda_moda_setup' );

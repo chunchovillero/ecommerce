@@ -12,5 +12,7 @@ function tienda_moda_enqueue_assets() {
 		array( 'tienda-moda-style' ),
 		$theme_version
 	);
+	wp_enqueue_style( 'tienda-moda-layout', get_theme_file_uri( '/assets/css/layout.css' ), array( 'tienda-moda-base' ), $theme_version );
+	wp_enqueue_script( 'tienda-moda-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array(), $theme_version, true );
 }
 add_action( 'wp_enqueue_scripts', 'tienda_moda_enqueue_assets' );
