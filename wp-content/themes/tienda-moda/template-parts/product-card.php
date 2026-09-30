@@ -22,12 +22,12 @@ $colors     = taxonomy_exists( 'pa_color' ) ? get_the_terms( $product_id, 'pa_co
 		<?php endif; ?>
 		<?php
 		if ( $image_id ) {
-			echo wp_get_attachment_image( $image_id, 'woocommerce_thumbnail', false, array( 'class' => 'product-primary-image', 'loading' => 'lazy' ) );
+			echo wp_get_attachment_image( $image_id, 'woocommerce_thumbnail', false, array( 'class' => 'product-primary-image', 'loading' => 'lazy', 'decoding' => 'async', 'sizes' => '(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw' ) );
 		} else {
 			echo wc_placeholder_img( 'woocommerce_thumbnail', array( 'class' => 'product-primary-image' ) );
 		}
 		if ( ! empty( $gallery ) ) {
-			echo wp_get_attachment_image( $gallery[0], 'woocommerce_thumbnail', false, array( 'class' => 'product-secondary-image', 'loading' => 'lazy' ) );
+			echo wp_get_attachment_image( $gallery[0], 'woocommerce_thumbnail', false, array( 'class' => 'product-secondary-image', 'loading' => 'lazy', 'decoding' => 'async', 'fetchpriority' => 'low', 'sizes' => '(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw' ) );
 		}
 		?>
 	</a>

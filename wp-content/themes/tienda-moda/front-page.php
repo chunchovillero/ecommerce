@@ -5,13 +5,15 @@ get_header();
 
 $shop_url       = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
 $hero_image_id  = absint( get_theme_mod( 'tienda_moda_hero_image', 0 ) );
-$hero_image_url = $hero_image_id ? wp_get_attachment_image_url( $hero_image_id, 'full' ) : '';
 $hero_title     = get_theme_mod( 'tienda_moda_hero_title', '' );
 $hero_subtitle  = get_theme_mod( 'tienda_moda_hero_subtitle', '' );
 $hero_button    = get_theme_mod( 'tienda_moda_hero_button', __( 'Ver colección', 'tienda-moda' ) );
 $hero_url       = get_theme_mod( 'tienda_moda_hero_url', '' ) ?: $shop_url;
 ?>
-<section class="home-hero<?php echo $hero_image_url ? ' has-image' : ''; ?>"<?php echo $hero_image_url ? ' style="background-image:url(' . esc_url( $hero_image_url ) . ')"' : ''; ?>>
+<section class="home-hero<?php echo $hero_image_id ? ' has-image' : ''; ?>">
+	<?php if ( $hero_image_id ) : ?>
+		<div class="hero-media" aria-hidden="true"><?php echo wp_get_attachment_image( $hero_image_id, 'full', false, array( 'class' => 'hero-image', 'loading' => 'eager', 'fetchpriority' => 'high', 'sizes' => '100vw' ) ); ?></div>
+	<?php endif; ?>
 	<div class="hero-content">
 		<h1><?php echo esc_html( $hero_title ?: get_bloginfo( 'name' ) ); ?></h1>
 		<?php if ( $hero_subtitle ?: get_bloginfo( 'description' ) ) : ?>
@@ -53,8 +55,11 @@ $promo_text  = get_theme_mod( 'tienda_moda_promo_text', '' );
 $promo_image = absint( get_theme_mod( 'tienda_moda_promo_image', 0 ) );
 ?>
 <?php if ( $promo_title || $promo_text || $promo_image ) : ?>
-	<section class="home-promo"<?php echo $promo_image ? ' style="background-image:url(' . esc_url( wp_get_attachment_image_url( $promo_image, 'full' ) ) . ')"' : ''; ?>>
-		<div>
+	<section class="home-promo<?php echo $promo_image ? ' has-image' : ''; ?>">
+		<?php if ( $promo_image ) : ?>
+			<div class="promo-media" aria-hidden="true"><?php echo wp_get_attachment_image( $promo_image, 'full', false, array( 'class' => 'promo-image', 'loading' => 'lazy', 'sizes' => '100vw' ) ); ?></div>
+		<?php endif; ?>
+		<div class="promo-content">
 			<?php if ( $promo_title ) : ?><h2><?php echo esc_html( $promo_title ); ?></h2><?php endif; ?>
 			<?php if ( $promo_text ) : ?><p><?php echo esc_html( $promo_text ); ?></p><?php endif; ?>
 			<?php if ( get_theme_mod( 'tienda_moda_promo_button', __( 'Comprar ahora', 'tienda-moda' ) ) ) : ?>

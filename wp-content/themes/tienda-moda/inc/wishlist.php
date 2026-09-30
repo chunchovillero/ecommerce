@@ -32,6 +32,19 @@ function tienda_moda_get_wishlist_ids() {
 }
 
 /**
+ * Whether the current request displays a favorites grid.
+ *
+ *  bool
+ */
+function tienda_moda_is_wishlist_context() {
+	$page_id       = absint( get_option( 'tienda_moda_wishlist_page_id' ) );
+	$is_page       = $page_id && is_page( $page_id );
+	$is_my_account = function_exists( 'is_account_page' ) && is_account_page() && function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url( 'favoritos' );
+
+	return $is_page || $is_my_account;
+}
+
+/**
  * Resolve the favorites page URL.
  *
  * @return string

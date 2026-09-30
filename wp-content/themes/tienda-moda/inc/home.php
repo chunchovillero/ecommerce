@@ -14,10 +14,19 @@ function tienda_moda_get_home_products( $group, $limit = 8 ) {
 		return array();
 	}
 
+	$limit       = absint( $limit );
+	$cache_key   = 'tienda_moda_home_products_' . sanitize_key( $group ) . '_' . $limit;
+	$product_ids = get_transient( $cache_key );
+
+	if ( false !== $product_ids ) {
+		$products = array_map( 'wc_get_product', $product_ids );
+		return array_values( array_filter( $products ) );
+	}
+
 	$args = array(
 		'status' => 'publish',
-		'limit'  => absint( $limit ),
-		'return' => 'objects',
+		'limit'  => $limit,
+		'return' => 'ids',
 	);
 
 	if ( 'popular' === $group ) {
@@ -29,6 +38,7 @@ function tienda_moda_get_home_products( $group, $limit = 8 ) {
 		$args['order']   = 'DESC';
 
 		if ( empty( $args['include'] ) ) {
+			set_transient( $cache_key, array(), 5 * MINUTE_IN_SECONDS );
 			return array();
 		}
 	} else {
@@ -36,7 +46,11 @@ function tienda_moda_get_home_products( $group, $limit = 8 ) {
 		$args['order']   = 'DESC';
 	}
 
-	return wc_get_products( $args );
+	$product_ids = wc_get_products( $args );
+	set_transient( $cache_key, $product_ids, 5 * MINUTE_IN_SECONDS );
+
+	$products = array_map( 'wc_get_product', $product_ids );
+	return array_values( array_filter( $products ) );
 }
 
 /**

@@ -61,4 +61,4 @@ La Fase 1 crea el scaffold mínimo con `style.css`, `functions.php`, `header.php
 12. SEO y accesibilidad.
 13. QA en WordPress y WooCommerce reales.
 
-Las fases 1 a 10 están implementadas. La página `Favoritos` se crea al activar el tema y guarda datos en la cuenta del cliente o en el navegador para visitantes.
+Las fases 1 a 11 están implementadas. La página `Favoritos` se crea al activar el tema y guarda datos en la cuenta del cliente o en el navegador para visitantes.
