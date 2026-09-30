@@ -35,6 +35,10 @@ function tienda_moda_enqueue_assets() {
 		wp_enqueue_style( 'tienda-moda-checkout', get_theme_file_uri( '/assets/css/checkout.css' ), array( 'tienda-moda-cart' ), $theme_version );
 		wp_enqueue_script( 'tienda-moda-checkout', get_theme_file_uri( '/assets/js/checkout.js' ), array( 'jquery' ), $theme_version, true );
 	}
+	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
+		wp_enqueue_style( 'tienda-moda-account', get_theme_file_uri( '/assets/css/account.css' ), array( 'tienda-moda-cart' ), $theme_version );
+		wp_enqueue_script( 'tienda-moda-account', get_theme_file_uri( '/assets/js/account.js' ), array(), $theme_version, true );
+	}
 	wp_enqueue_script( 'tienda-moda-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array(), $theme_version, true );
 }
 add_action( 'wp_enqueue_scripts', 'tienda_moda_enqueue_assets' );
