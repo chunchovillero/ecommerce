@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+wp-config.php
+*.sql
+*.sql.gz
+*.sqlite
+*.log
+*.bak
+*.backup
+node_modules/
+vendor/
+uploads/
