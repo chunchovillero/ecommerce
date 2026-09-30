@@ -17,3 +17,5 @@ require_once get_theme_file_path( '/inc/customizer-product.php' );
 require_once get_theme_file_path( '/inc/cart.php' );
 require_once get_theme_file_path( '/inc/checkout.php' );
 require_once get_theme_file_path( '/inc/account.php' );
+require_once get_theme_file_path( '/inc/wishlist.php' );
+require_once get_theme_file_path( '/inc/product-search.php' );

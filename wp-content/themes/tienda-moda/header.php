@@ -53,13 +53,18 @@ $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
 		</nav>
 
 		<div class="header-actions">
-			<a class="header-action header-search" href="<?php echo esc_url( add_query_arg( array( 's' => '', 'post_type' => 'product' ), home_url( '/' ) ) ); ?>">
+			<button class="header-action header-search" type="button" data-search-open aria-controls="product-search-dialog" aria-expanded="false">
 				<?php echo tienda_moda_icon( 'search' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="action-label"><?php esc_html_e( 'Buscar', 'tienda-moda' ); ?></span>
-			</a>
+			</button>
 			<a class="header-action header-account" href="<?php echo esc_url( $account_url ); ?>">
 				<?php echo tienda_moda_icon( 'user' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="action-label"><?php esc_html_e( 'Mi cuenta', 'tienda-moda' ); ?></span>
+			</a>
+			<a class="header-action header-wishlist" href="<?php echo esc_url( tienda_moda_wishlist_url() ); ?>">
+				<?php echo tienda_moda_icon( 'heart' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<span class="action-label"><?php esc_html_e( 'Favoritos', 'tienda-moda' ); ?></span>
+				<span class="wishlist-count" aria-label="<?php esc_attr_e( 'Productos favoritos', 'tienda-moda' ); ?>"><?php echo esc_html( count( tienda_moda_get_wishlist_ids() ) ); ?></span>
 			</a>
 			<a class="header-action header-cart" href="<?php echo esc_url( $cart_url ); ?>">
 				<?php echo tienda_moda_icon( 'bag' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
@@ -93,5 +98,20 @@ $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
 	</nav>
 	<a class="drawer-shop-link" href="<?php echo esc_url( $shop_url ); ?>"><?php esc_html_e( 'Ver toda la tienda', 'tienda-moda' ); ?></a>
 </aside>
+
+<dialog class="product-search-dialog" id="product-search-dialog" aria-labelledby="product-search-title">
+	<div class="search-dialog-header">
+		<h2 id="product-search-title"><?php esc_html_e( 'Buscar productos', 'tienda-moda' ); ?></h2>
+		<button type="button" class="header-action" data-search-close aria-label="<?php esc_attr_e( 'Cerrar buscador', 'tienda-moda' ); ?>"><?php echo tienda_moda_icon( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></button>
+	</div>
+	<form class="product-search-form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<label class="screen-reader-text" for="product-search-input"><?php esc_html_e( 'Buscar productos', 'tienda-moda' ); ?></label>
+		<input id="product-search-input" type="search" name="s" autocomplete="off" placeholder="<?php esc_attr_e( '¿Qué estás buscando?', 'tienda-moda' ); ?>" data-product-search>
+		<input type="hidden" name="post_type" value="product">
+		<button type="submit" class="search-submit"><?php esc_html_e( 'Buscar', 'tienda-moda' ); ?></button>
+	</form>
+	<div class="product-search-status" data-search-status aria-live="polite"></div>
+	<div class="product-search-results" data-search-results></div>
+</dialog>
 
 <main id="site-content" class="site-content">

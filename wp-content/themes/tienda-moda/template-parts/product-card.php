@@ -31,6 +31,7 @@ $colors     = taxonomy_exists( 'pa_color' ) ? get_the_terms( $product_id, 'pa_co
 		}
 		?>
 	</a>
+	<?php tienda_moda_wishlist_button( $product_id, 'card' ); ?>
 	<div class="product-card-content">
 		<h3><a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo esc_html( $product->get_name() ); ?></a></h3>
 		<div class="product-price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>

@@ -15,6 +15,7 @@ function tienda_moda_account_menu_items( $items ) {
 		'downloads'       => __( 'Descargas', 'tienda-moda' ),
 		'edit-address'    => __( 'Direcciones', 'tienda-moda' ),
 		'edit-account'    => __( 'Datos personales', 'tienda-moda' ),
+		'favoritos'       => __( 'Favoritos', 'tienda-moda' ),
 		'customer-logout' => __( 'Cerrar sesión', 'tienda-moda' ),
 	);
 
@@ -23,6 +24,11 @@ function tienda_moda_account_menu_items( $items ) {
 			$items[ $endpoint ] = $labels[ $endpoint ];
 		}
 	}
+
+	$logout = $items['customer-logout'] ?? $labels['customer-logout'];
+	unset( $items['customer-logout'] );
+	$items['favoritos']       = $labels['favoritos'];
+	$items['customer-logout'] = $logout;
 
 	return $items;
 }

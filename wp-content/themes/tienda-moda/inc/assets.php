@@ -28,8 +28,19 @@ function tienda_moda_enqueue_assets() {
 	}
 	if ( class_exists( 'WooCommerce' ) ) {
 		wp_enqueue_style( 'tienda-moda-cart', get_theme_file_uri( '/assets/css/cart.css' ), array( 'tienda-moda-layout' ), $theme_version );
+		wp_enqueue_style( 'tienda-moda-commerce-tools', get_theme_file_uri( '/assets/css/commerce-tools.css' ), array( 'tienda-moda-cart' ), $theme_version );
 		wp_enqueue_script( 'wc-cart-fragments' );
 		wp_enqueue_script( 'tienda-moda-cart', get_theme_file_uri( '/assets/js/cart.js' ), array( 'jquery', 'wc-cart-fragments' ), $theme_version, true );
+		wp_enqueue_script( 'tienda-moda-commerce-tools', get_theme_file_uri( '/assets/js/commerce-tools.js' ), array(), $theme_version, true );
+		wp_localize_script( 'tienda-moda-commerce-tools', 'tiendaModaTools', array(
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce( 'tienda_moda_tools' ),
+			'isLoggedIn' => is_user_logged_in(),
+			'wishlistIds' => tienda_moda_get_wishlist_ids(),
+			'wishlistUrl' => tienda_moda_wishlist_url(),
+			'emptyMessage' => __( 'Aún no tienes productos favoritos.', 'tienda-moda' ),
+			'errorMessage' => __( 'No fue posible completar la acción. Inténtalo nuevamente.', 'tienda-moda' ),
+		) );
 	}
 	if ( function_exists( 'is_checkout' ) && is_checkout() ) {
 		wp_enqueue_style( 'tienda-moda-checkout', get_theme_file_uri( '/assets/css/checkout.css' ), array( 'tienda-moda-cart' ), $theme_version );

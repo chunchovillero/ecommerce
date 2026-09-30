@@ -23,7 +23,7 @@ Para detener el entorno, usar `docker compose down`. No agregar `--volumes` si s
 ## Requisitos y estado
 
 - Entorno de desarrollo inspeccionado: PHP 8.5.4, Git 2.53.0, Node.js 24.21.0 y Composer disponibles.
-- WordPress 7.1.2 funciona localmente en Docker con PHP 8.3; WooCommerce se instalará en su fase correspondiente.
+- WordPress 7.1.2 y WooCommerce 11.1.2 funcionan localmente en Docker con PHP 8.3.
 - Requisito declarado por el tema: PHP 7.4 o posterior. La compatibilidad real con una instalación se debe validar en su entorno WordPress/WooCommerce.
 
 ## Estructura prevista
@@ -39,10 +39,10 @@ La Fase 1 crea el scaffold mínimo con `style.css`, `functions.php`, `header.php
 ## Decisiones técnicas
 
 - Tema clásico basado en plantillas PHP; sin constructor visual ni framework CSS por defecto.
-- WooCommerce será un plugin separado y requerido para vender. Este scaffold declara sus soportes; no prueba una tienda hasta instalarlo.
+- WooCommerce se mantiene como plugin separado; el tema integra catálogo, producto, carrito, checkout chileno, cuenta, favoritos y búsqueda AJAX mediante sus APIs.
 - Se priorizarán hooks y filtros de WooCommerce; no se copiarán plantillas del plugin sin una necesidad demostrada.
 - Las opciones editables se implementarán primero con Customizer, Settings API y biblioteca de medios nativos de WordPress. ACF no es requisito; una página global de opciones de ACF requiere ACF Pro.
-- Instalar solo un plugin SEO (Yoast SEO o Rank Math). Pasarelas, despacho y wishlist se decidirán cuando se conozcan las necesidades y proveedores reales.
+- Instalar solo un plugin SEO (Yoast SEO o Rank Math). Las pasarelas y empresas de despacho se decidirán con proveedores reales. La wishlist ligera está implementada en el tema sin plugin adicional.
 - No se incluyen integraciones de pago o despacho simuladas ni se almacenarán datos de tarjetas.
 
 ## Fases
@@ -60,3 +60,5 @@ La Fase 1 crea el scaffold mínimo con `style.css`, `functions.php`, `header.php
 11. Rendimiento.
 12. SEO y accesibilidad.
 13. QA en WordPress y WooCommerce reales.
+
+Las fases 1 a 9 están implementadas. La página `Favoritos` se crea al activar el tema y guarda datos en la cuenta del cliente o en el navegador para visitantes.
