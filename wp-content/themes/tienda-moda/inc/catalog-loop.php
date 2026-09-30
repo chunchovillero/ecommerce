@@ -12,6 +12,9 @@ function tienda_moda_product_loop_start( $markup ) {
 	if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() ) ) {
 		return '<div class="products product-grid columns-' . esc_attr( tienda_moda_catalog_columns() ) . '">';
 	}
+	if ( function_exists( 'is_product' ) && is_product() ) {
+		return '<div class="products product-grid columns-' . esc_attr( wc_get_loop_prop( 'columns', 4 ) ) . '">';
+	}
 	return $markup;
 }
 add_filter( 'woocommerce_product_loop_start', 'tienda_moda_product_loop_start' );
@@ -24,6 +27,9 @@ add_filter( 'woocommerce_product_loop_start', 'tienda_moda_product_loop_start' )
  */
 function tienda_moda_product_loop_end( $markup ) {
 	if ( function_exists( 'is_shop' ) && ( is_shop() || is_product_taxonomy() ) ) {
+		return '</div>';
+	}
+	if ( function_exists( 'is_product' ) && is_product() ) {
 		return '</div>';
 	}
 	return $markup;

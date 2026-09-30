@@ -11,3 +11,6 @@ require_once get_theme_file_path( '/inc/home.php' );
 require_once get_theme_file_path( '/inc/catalog.php' );
 require_once get_theme_file_path( '/inc/catalog-loop.php' );
 require_once get_theme_file_path( '/inc/catalog-ordering.php' );
+require_once get_theme_file_path( '/inc/product.php' );
+require_once get_theme_file_path( '/inc/product-admin.php' );
+require_once get_theme_file_path( '/inc/customizer-product.php' );
