@@ -8,7 +8,9 @@ wp-config.php
 *.log
 *.bak
 *.backup
-node_modules/
-vendor/
-uploads/
-.wordpress/
+/node_modules/
+/vendor/
+/wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/debug.log

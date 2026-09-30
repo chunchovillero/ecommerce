@@ -1,26 +1,17 @@
 <?php
-defined( 'ABSPATH' ) || exit;
+/**
+ * Front to the WordPress application. This file doesn't do anything, but loads
+ * wp-blog-header.php which does and tells WordPress to load the theme.
+ *
+ * @package WordPress
+ */
 
-get_header();
-?>
-<div class="content-container">
-	<?php if ( have_posts() ) : ?>
-		<?php while ( have_posts() ) : ?>
-			<?php
-			the_post();
-			?>
-			<article <?php post_class( 'entry' ); ?> id="post-<?php the_ID(); ?>">
-				<h1 class="entry-title">
-					<a href="<?php echo esc_url( get_permalink() ); ?>">
-						<?php echo esc_html( get_the_title() ); ?>
-					</a>
-				</h1>
-				<div class="entry-content"><?php the_content(); ?></div>
-			</article>
-		<?php endwhile; ?>
-	<?php else : ?>
-		<p><?php esc_html_e( 'Todavía no hay contenido.', 'tienda-moda' ); ?></p>
-	<?php endif; ?>
-</div>
-<?php
-get_footer();
+/**
+ * Tells WordPress to load the WordPress theme and output it.
+ *
+ * @var bool
+ */
+define( 'WP_USE_THEMES', true );
+
+/** Loads the WordPress Environment and Template */
+require __DIR__ . '/wp-blog-header.php';

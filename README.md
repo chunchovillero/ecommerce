@@ -1,10 +1,10 @@
 # Tienda de Moda
 
-Tema clásico de WordPress preparado para evolucionar como tienda propia con WooCommerce. No incluye WordPress, WooCommerce, credenciales, productos ni configuraciones de producción.
+Proyecto WordPress completo preparado para evolucionar como tienda propia con WooCommerce. Incluye el core y el theme personalizado; no incluye credenciales, productos ni configuraciones de producción.
 
 ## Instalación local de WordPress
 
-El entorno usa WordPress con PHP 8.3 y MariaDB 11.4. El core y la base de datos viven en volúmenes de Docker; este repositorio se monta como `wp-content/themes/tienda-moda`. `.env` y `.git` quedan ocultos dentro del contenedor web.
+El entorno usa WordPress con PHP 8.3 y MariaDB 11.4. El core, `wp-content` y el theme forman parte de este repositorio; la base de datos vive en un volumen de Docker. El theme está en `wp-content/themes/tienda-moda`. `.env` y `.git` quedan ocultos dentro del contenedor web.
 
 1. Ejecutar `docker compose up -d`.
 2. Abrir `http://localhost:8080` y completar el instalador de WordPress.
