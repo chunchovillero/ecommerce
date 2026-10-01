@@ -60,6 +60,7 @@ function tienda_moda_enqueue_assets() {
 
 	$responsive_dependencies = class_exists( 'WooCommerce' ) ? array( 'tienda-moda-commerce-tools' ) : array( 'tienda-moda-layout' );
 	wp_enqueue_style( 'tienda-moda-responsive', get_theme_file_uri( '/assets/css/responsive.css' ), $responsive_dependencies, $theme_version );
+	wp_enqueue_style( 'tienda-moda-accessibility', get_theme_file_uri( '/assets/css/accessibility.css' ), array( 'tienda-moda-responsive' ), $theme_version );
 	wp_enqueue_script( 'tienda-moda-navigation', get_theme_file_uri( '/assets/js/navigation.js' ), array(), $theme_version, true );
 
 	foreach ( array( 'tienda-moda-navigation', 'tienda-moda-cart', 'tienda-moda-commerce-tools', 'tienda-moda-catalog', 'tienda-moda-product', 'tienda-moda-checkout', 'tienda-moda-account' ) as $handle ) {

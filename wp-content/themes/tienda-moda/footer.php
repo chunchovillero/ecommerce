@@ -49,7 +49,7 @@ $social_links = array(
 				<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', get_theme_mod( 'tienda_moda_contact_phone' ) ) ); ?>"><?php echo esc_html( get_theme_mod( 'tienda_moda_contact_phone' ) ); ?></a>
 			<?php endif; ?>
 			<?php if ( array_filter( $social_links ) ) : ?>
-				<div class="social-links" aria-label="<?php esc_attr_e( 'Redes sociales', 'tienda-moda' ); ?>">
+				<nav class="social-links" aria-label="<?php esc_attr_e( 'Redes sociales', 'tienda-moda' ); ?>">
 					<?php foreach ( $social_links as $network => $url ) : ?>
 						<?php if ( $url ) : ?>
 							<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
@@ -58,7 +58,7 @@ $social_links = array(
 							</a>
 						<?php endif; ?>
 					<?php endforeach; ?>
-				</div>
+				</nav>
 			<?php endif; ?>
 		</div>
 	</div>

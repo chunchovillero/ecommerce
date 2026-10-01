@@ -59,7 +59,7 @@ function tienda_moda_cart_count() {
 function tienda_moda_cart_count_fragment( $fragments ) {
 	ob_start();
 	?>
-	<span class="cart-count" aria-label="<?php echo esc_attr( sprintf( _n( '%d producto', '%d productos', tienda_moda_cart_count(), 'tienda-moda' ), tienda_moda_cart_count() ) ); ?>"><?php echo esc_html( tienda_moda_cart_count() ); ?></span>
+	<span class="cart-count" aria-live="polite" aria-atomic="true" aria-label="<?php echo esc_attr( sprintf( _n( '%d producto', '%d productos', tienda_moda_cart_count(), 'tienda-moda' ), tienda_moda_cart_count() ) ); ?>"><?php echo esc_html( tienda_moda_cart_count() ); ?></span>
 	<?php
 	$fragments['.header-cart .cart-count'] = ob_get_clean();
 

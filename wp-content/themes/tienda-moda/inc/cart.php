@@ -11,7 +11,7 @@ function tienda_moda_mini_cart_drawer() {
 	}
 	?>
 	<div class="mini-cart-overlay" data-mini-cart-close hidden></div>
-	<aside id="mini-cart-drawer" class="mini-cart-drawer" aria-hidden="true" aria-labelledby="mini-cart-title">
+	<aside id="mini-cart-drawer" class="mini-cart-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="mini-cart-title">
 		<div class="mini-cart-header">
 			<h2 id="mini-cart-title"><?php esc_html_e( 'Tu carrito', 'tienda-moda' ); ?></h2>
 			<button type="button" class="mini-cart-close" data-mini-cart-close aria-label="<?php esc_attr_e( 'Cerrar carrito', 'tienda-moda' ); ?>">

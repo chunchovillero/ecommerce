@@ -1,26 +1,23 @@
 <?php
+
 defined( 'ABSPATH' ) || exit;
 
 get_header();
 ?>
-<div class="content-container">
+<div class="content-container content-listing">
+	<header class="listing-header">
+		<h1><?php echo esc_html( single_post_title( '', false ) ?: __( 'Novedades', 'tienda-moda' ) ); ?></h1>
+	</header>
 	<?php if ( have_posts() ) : ?>
-		<?php while ( have_posts() ) : ?>
-			<?php
-			the_post();
-			?>
-			<article <?php post_class( 'entry' ); ?> id="post-<?php the_ID(); ?>">
-				<h1 class="entry-title">
-					<a href="<?php echo esc_url( get_permalink() ); ?>">
-						<?php echo esc_html( get_the_title() ); ?>
-					</a>
-				</h1>
-				<div class="entry-content"><?php the_content(); ?></div>
-			</article>
-		<?php endwhile; ?>
+		<div class="entry-list">
+			<?php while ( have_posts() ) : ?>
+				<?php the_post(); ?>
+				<?php get_template_part( 'template-parts/content', 'summary' ); ?>
+			<?php endwhile; ?>
+		</div>
+		<?php the_posts_pagination( array( 'prev_text' => __( 'Anterior', 'tienda-moda' ), 'next_text' => __( 'Siguiente', 'tienda-moda' ) ) ); ?>
 	<?php else : ?>
-		<p><?php esc_html_e( 'Todavía no hay contenido.', 'tienda-moda' ); ?></p>
+		<p class="empty-state"><?php esc_html_e( 'Todavía no hay contenido.', 'tienda-moda' ); ?></p>
 	<?php endif; ?>
 </div>
-<?php
-get_footer();
+<?php get_footer(); ?>

@@ -16,7 +16,7 @@
 	const writeGuestIds = (ids) => localStorage.setItem(storageKey, JSON.stringify(ids));
 	let wishlistIds = config.isLoggedIn ? config.wishlistIds.map(Number) : readGuestIds();
 
-	const post = async (action, values = {}) => {
+	const post = async (action, values = {}, signal = undefined) => {
 		const body = new FormData();
 		body.append('action', action);
 		body.append('nonce', config.nonce);
@@ -24,7 +24,7 @@
 			if (Array.isArray(value)) value.forEach((item) => body.append(key + '[]', item));
 			else body.append(key, value);
 		});
-		const response = await fetch(config.ajaxUrl, { method: 'POST', credentials: 'same-origin', body });
+		const response = await fetch(config.ajaxUrl, { method: 'POST', credentials: 'same-origin', body, signal });
 		const payload = await response.json();
 		if (!response.ok || !payload.success) throw new Error(payload.data?.message || config.errorMessage);
 		return payload.data;
@@ -42,6 +42,7 @@
 		});
 		document.querySelectorAll('.wishlist-count').forEach((count) => {
 			count.textContent = wishlistIds.length;
+			count.setAttribute('aria-label', wishlistIds.length + (wishlistIds.length === 1 ? ' producto favorito' : ' productos favoritos'));
 		});
 	};
 
@@ -135,17 +136,21 @@
 		if (query.length < 2) {
 			results.innerHTML = '';
 			status.textContent = query ? 'Escribe al menos 2 caracteres.' : '';
+			status.setAttribute('aria-busy', 'false');
 			return;
 		}
 		status.textContent = 'Buscando…';
+		status.setAttribute('aria-busy', 'true');
 		timer = window.setTimeout(async () => {
 			controller = new AbortController();
 			try {
-				const data = await post('tienda_moda_product_search', { query });
+				const data = await post('tienda_moda_product_search', { query }, controller.signal);
 				results.innerHTML = data.html;
 				status.textContent = data.count ? data.count + (data.count === 1 ? ' resultado' : ' resultados') : 'No encontramos productos.';
 			} catch (error) {
 				if (error.name !== 'AbortError') status.textContent = config.errorMessage;
+			} finally {
+				status.setAttribute('aria-busy', 'false');
 			}
 		}, 250);
 	});

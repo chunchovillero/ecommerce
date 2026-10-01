@@ -143,7 +143,7 @@ function tienda_moda_wishlist_content() {
 	?>
 	<section class="wishlist-page" data-wishlist-page>
 		<header class="wishlist-heading">
-			<h1><?php esc_html_e( 'Mis favoritos', 'tienda-moda' ); ?></h1>
+			<h2><?php esc_html_e( 'Mis favoritos', 'tienda-moda' ); ?></h2>
 			<p><?php esc_html_e( 'Guarda aquí las prendas que quieres revisar más tarde.', 'tienda-moda' ); ?></p>
 		</header>
 		<div class="product-grid wishlist-grid" data-wishlist-grid data-server-ids="<?php echo esc_attr( implode( ',', $ids ) ); ?>">

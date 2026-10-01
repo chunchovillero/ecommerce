@@ -64,19 +64,19 @@ $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
 			<a class="header-action header-wishlist" href="<?php echo esc_url( tienda_moda_wishlist_url() ); ?>">
 				<?php echo tienda_moda_icon( 'heart' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="action-label"><?php esc_html_e( 'Favoritos', 'tienda-moda' ); ?></span>
-				<span class="wishlist-count" aria-label="<?php esc_attr_e( 'Productos favoritos', 'tienda-moda' ); ?>"><?php echo esc_html( count( tienda_moda_get_wishlist_ids() ) ); ?></span>
+				<span class="wishlist-count" aria-live="polite" aria-atomic="true" aria-label="<?php echo esc_attr( sprintf( _n( '%d producto favorito', '%d productos favoritos', count( tienda_moda_get_wishlist_ids() ), 'tienda-moda' ), count( tienda_moda_get_wishlist_ids() ) ) ); ?>"><?php echo esc_html( count( tienda_moda_get_wishlist_ids() ) ); ?></span>
 			</a>
 			<a class="header-action header-cart" href="<?php echo esc_url( $cart_url ); ?>">
 				<?php echo tienda_moda_icon( 'bag' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<span class="action-label"><?php esc_html_e( 'Carrito', 'tienda-moda' ); ?></span>
-				<span class="cart-count" aria-label="<?php echo esc_attr( sprintf( _n( '%d producto', '%d productos', tienda_moda_cart_count(), 'tienda-moda' ), tienda_moda_cart_count() ) ); ?>"><?php echo esc_html( tienda_moda_cart_count() ); ?></span>
+				<span class="cart-count" aria-live="polite" aria-atomic="true" aria-label="<?php echo esc_attr( sprintf( _n( '%d producto', '%d productos', tienda_moda_cart_count(), 'tienda-moda' ), tienda_moda_cart_count() ) ); ?>"><?php echo esc_html( tienda_moda_cart_count() ); ?></span>
 			</a>
 		</div>
 	</div>
 </header>
 
 <div class="drawer-overlay" data-drawer-close hidden></div>
-<aside id="mobile-navigation" class="mobile-drawer" aria-hidden="true" aria-label="<?php esc_attr_e( 'Menú móvil', 'tienda-moda' ); ?>">
+<aside id="mobile-navigation" class="mobile-drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="<?php esc_attr_e( 'Menú móvil', 'tienda-moda' ); ?>">
 	<div class="drawer-header">
 		<span class="drawer-title"><?php esc_html_e( 'Menú', 'tienda-moda' ); ?></span>
 		<button class="header-action drawer-close" type="button" data-drawer-close>
@@ -106,11 +106,11 @@ $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
 	</div>
 	<form class="product-search-form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 		<label class="screen-reader-text" for="product-search-input"><?php esc_html_e( 'Buscar productos', 'tienda-moda' ); ?></label>
-		<input id="product-search-input" type="search" name="s" autocomplete="off" placeholder="<?php esc_attr_e( '¿Qué estás buscando?', 'tienda-moda' ); ?>" data-product-search>
+		<input id="product-search-input" type="search" name="s" autocomplete="off" aria-describedby="product-search-status" placeholder="<?php esc_attr_e( '¿Qué estás buscando?', 'tienda-moda' ); ?>" data-product-search>
 		<input type="hidden" name="post_type" value="product">
 		<button type="submit" class="search-submit"><?php esc_html_e( 'Buscar', 'tienda-moda' ); ?></button>
 	</form>
-	<div class="product-search-status" data-search-status aria-live="polite"></div>
+	<div class="product-search-status" id="product-search-status" data-search-status role="status" aria-live="polite"></div>
 	<div class="product-search-results" data-search-results></div>
 </dialog>
 

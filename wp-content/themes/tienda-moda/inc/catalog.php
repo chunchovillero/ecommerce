@@ -36,9 +36,9 @@ function tienda_moda_catalog_open() {
 		</div>
 		<div class="catalog-layout">
 			<div class="filter-overlay" data-filter-close hidden></div>
-			<aside id="catalog-filters" class="catalog-filters">
+			<aside id="catalog-filters" class="catalog-filters" aria-labelledby="catalog-filters-title">
 				<div class="filter-drawer-header">
-					<h2><?php esc_html_e( 'Filtrar', 'tienda-moda' ); ?></h2>
+					<h2 id="catalog-filters-title"><?php esc_html_e( 'Filtrar', 'tienda-moda' ); ?></h2>
 					<button type="button" class="filter-close" data-filter-close aria-label="<?php esc_attr_e( 'Cerrar filtros', 'tienda-moda' ); ?>">
 						<?php echo tienda_moda_icon( 'close' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</button>
@@ -90,7 +90,7 @@ function tienda_moda_catalog_filter_form() {
 		<?php if ( ! is_wp_error( $categories ) && $categories ) : ?>
 			<fieldset>
 				<legend><?php esc_html_e( 'Categoría', 'tienda-moda' ); ?></legend>
-				<select name="catalog_category">
+				<select name="catalog_category" aria-label="<?php esc_attr_e( 'Categoría', 'tienda-moda' ); ?>">
 					<option value=""><?php esc_html_e( 'Todas', 'tienda-moda' ); ?></option>
 					<?php foreach ( $categories as $category ) : ?>
 						<option value="<?php echo esc_attr( $category->slug ); ?>" <?php selected( tienda_moda_catalog_param( 'catalog_category' ), $category->slug ); ?>>
@@ -115,7 +115,7 @@ function tienda_moda_catalog_filter_form() {
 				<?php if ( ! is_wp_error( $terms ) && $terms ) : ?>
 					<fieldset>
 						<legend><?php echo esc_html( $config['label'] ); ?></legend>
-						<select name="<?php echo esc_attr( $name ); ?>">
+						<select name="<?php echo esc_attr( $name ); ?>" aria-label="<?php echo esc_attr( $config['label'] ); ?>">
 							<option value=""><?php esc_html_e( 'Todos', 'tienda-moda' ); ?></option>
 							<?php foreach ( $terms as $term ) : ?>
 								<option value="<?php echo esc_attr( $term->slug ); ?>" <?php selected( tienda_moda_catalog_param( $name ), $term->slug ); ?>><?php echo esc_html( $term->name ); ?></option>
