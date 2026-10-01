@@ -24,7 +24,9 @@ Para detener el entorno, usar `docker compose down`. No agregar `--volumes` si s
 
 - Entorno de desarrollo inspeccionado: PHP 8.5.4, Git 2.53.0, Node.js 24.21.0 y Composer disponibles.
 - WordPress 7.1.2 y WooCommerce 11.1.2 funcionan localmente en Docker con PHP 8.3.
+- WordPress y WooCommerce utilizan las traducciones oficiales `es_CL`.
 - Requisito declarado por el tema: PHP 7.4 o posterior. La compatibilidad real con una instalación se debe validar en su entorno WordPress/WooCommerce.
+- El resultado del QA está en `docs/qa-final.md`; el despliegue está documentado en `docs/deployment.md`.
 
 ## Estructura prevista
 
@@ -61,4 +63,4 @@ La Fase 1 crea el scaffold mínimo con `style.css`, `functions.php`, `header.php
 12. SEO y accesibilidad.
 13. QA en WordPress y WooCommerce reales.
 
-Las fases 1 a 12 están implementadas. La página `Favoritos` se crea al activar el tema y guarda datos en la cuenta del cliente o en el navegador para visitantes.
+Las fases 1 a 13 están implementadas. La página `Favoritos` se crea al activar el tema y guarda datos en la cuenta del cliente o en el navegador para visitantes.
