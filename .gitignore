@@ -4,6 +4,7 @@
 wp-config.php
 *.sql
 *.sql.gz
+!/database/demo.sql
 *.sqlite
 *.log
 *.bak

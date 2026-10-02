@@ -20,6 +20,11 @@ docker compose --profile tools run --rm wpcli core version
 
 Para detener el entorno, usar `docker compose down`. No agregar `--volumes` si se desea conservar el sitio y la base de datos.
 
+El respaldo portable de demostración está en `database/demo.sql`. Incluye el
+catálogo de prueba, pero excluye usuarios, sesiones, comentarios y pedidos.
+Las instrucciones de importación y creación de un administrador local están en
+`database/README.md`.
+
 ## Requisitos y estado
 
 - Entorno de desarrollo inspeccionado: PHP 8.5.4, Git 2.53.0, Node.js 24.21.0 y Composer disponibles.
