@@ -12,7 +12,8 @@ function tienda_moda_product_customize_register( $wp_customize ) {
 		'tienda_moda_product_options',
 		array(
 			'title'    => __( 'Ficha de producto', 'tienda-moda' ),
-			'priority' => 32,
+			'panel'    => 'tienda_moda_settings',
+			'priority' => 55,
 		)
 	);
 
@@ -35,4 +36,3 @@ function tienda_moda_product_customize_register( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'tienda_moda_product_customize_register' );
-

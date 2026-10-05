@@ -8,6 +8,7 @@ function tienda_moda_enqueue_assets() {
 	wp_enqueue_style( 'tienda-moda-style', get_stylesheet_uri(), array(), $theme_version );
 	wp_enqueue_style( 'tienda-moda-base', get_theme_file_uri( '/assets/css/base.css' ), array( 'tienda-moda-style' ), $theme_version );
 	wp_enqueue_style( 'tienda-moda-layout', get_theme_file_uri( '/assets/css/layout.css' ), array( 'tienda-moda-base' ), $theme_version );
+	wp_add_inline_style( 'tienda-moda-layout', tienda_moda_customizer_css() );
 
 	if ( is_front_page() ) {
 		wp_enqueue_style( 'tienda-moda-product-card', get_theme_file_uri( '/assets/css/product-card.css' ), array( 'tienda-moda-layout' ), $theme_version );
@@ -51,7 +52,6 @@ function tienda_moda_enqueue_assets() {
 	}
 	if ( function_exists( 'is_checkout' ) && is_checkout() ) {
 		wp_enqueue_style( 'tienda-moda-checkout', get_theme_file_uri( '/assets/css/checkout.css' ), array( 'tienda-moda-mini-cart' ), $theme_version );
-		wp_enqueue_script( 'tienda-moda-checkout', get_theme_file_uri( '/assets/js/checkout.js' ), array( 'jquery' ), $theme_version, true );
 	}
 	if ( function_exists( 'is_account_page' ) && is_account_page() ) {
 		wp_enqueue_style( 'tienda-moda-account', get_theme_file_uri( '/assets/css/account.css' ), array( 'tienda-moda-mini-cart' ), $theme_version );

@@ -10,7 +10,10 @@ $social_links = array(
 	'instagram' => get_theme_mod( 'tienda_moda_instagram_url', '' ),
 	'facebook'  => get_theme_mod( 'tienda_moda_facebook_url', '' ),
 	'tiktok'    => get_theme_mod( 'tienda_moda_tiktok_url', '' ),
+	'whatsapp'  => get_theme_mod( 'tienda_moda_whatsapp_url', '' ),
 );
+$footer_text = get_theme_mod( 'tienda_moda_footer_text', '' ) ?: get_bloginfo( 'description' );
+$copyright   = get_theme_mod( 'tienda_moda_copyright', '' );
 ?>
 </main>
 <footer class="site-footer">
@@ -19,8 +22,8 @@ $social_links = array(
 			<a class="footer-title" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 			</a>
-			<?php if ( get_bloginfo( 'description' ) ) : ?>
-				<p><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
+			<?php if ( $footer_text ) : ?>
+				<p><?php echo esc_html( $footer_text ); ?></p>
 			<?php endif; ?>
 		</div>
 
@@ -48,6 +51,9 @@ $social_links = array(
 			<?php if ( get_theme_mod( 'tienda_moda_contact_phone', '' ) ) : ?>
 				<a href="<?php echo esc_url( 'tel:' . preg_replace( '/[^0-9+]/', '', get_theme_mod( 'tienda_moda_contact_phone' ) ) ); ?>"><?php echo esc_html( get_theme_mod( 'tienda_moda_contact_phone' ) ); ?></a>
 			<?php endif; ?>
+			<?php if ( get_theme_mod( 'tienda_moda_contact_address', '' ) ) : ?>
+				<address><?php echo esc_html( get_theme_mod( 'tienda_moda_contact_address' ) ); ?></address>
+			<?php endif; ?>
 			<?php if ( array_filter( $social_links ) ) : ?>
 				<nav class="social-links" aria-label="<?php esc_attr_e( 'Redes sociales', 'tienda-moda' ); ?>">
 					<?php foreach ( $social_links as $network => $url ) : ?>
@@ -64,7 +70,7 @@ $social_links = array(
 	</div>
 
 	<div class="footer-bottom">
-		<p>&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ); ?></p>
+		<p><?php echo $copyright ? esc_html( $copyright ) : '&copy; ' . esc_html( wp_date( 'Y' ) ) . ' ' . esc_html( get_bloginfo( 'name' ) ); ?></p>
 		<?php if ( has_nav_menu( 'legal' ) ) : ?>
 			<nav aria-label="<?php esc_attr_e( 'Navegación legal', 'tienda-moda' ); ?>">
 				<?php wp_nav_menu( array( 'theme_location' => 'legal', 'container' => false, 'depth' => 1 ) ); ?>

@@ -51,14 +51,14 @@ Cambiar `https://tienda.example` por el dominio definitivo. No reemplazar URLs d
 
 ## Configuración comercial previa al lanzamiento
 
-- Instalar y configurar una sola pasarela oficial.
+- Instalar y configurar el plugin oficial de Mercado Pago si ese es el proveedor elegido. Usar credenciales de prueba antes de producción.
 - Configurar zonas, tarifas y métodos reales de despacho o retiro.
 - Crear productos, categorías, tallas, colores, stock, SKU e imágenes.
 - Configurar páginas legales, contacto y políticas.
 - Configurar correo transaccional con SMTP o un proveedor de email.
 - Ejecutar una compra real de bajo monto en el ambiente definitivo.
 - Verificar correos, estados de pedido, descuentos, impuestos y reembolsos.
-- Instalar un solo plugin SEO, como Yoast SEO o Rank Math; el fallback del tema se desactiva automáticamente.
+- Mantener Rank Math como único plugin SEO; el fallback del tema se desactiva automáticamente.
 - Conectar analítica y consentimiento de cookies según corresponda.
 
 ## Verificación final
@@ -71,3 +71,18 @@ wp plugin status woocommerce
 ```
 
 Comprobar después la portada, tienda, producto variable, carrito, checkout, cuenta, favoritos, buscador, 404, sitemap y visualización en móvil.
+
+## Restauración de imágenes
+
+El repositorio conserva las fuentes en `wp-content/themes/tienda-moda/assets/images`, pero los adjuntos de la Biblioteca de medios viven en `wp-content/uploads` y sus IDs se guardan en la base de datos. Una restauración completa exige copiar `uploads` junto con la base de datos.
+
+Si solo se dispone del repositorio y una base limpia, ejecutar:
+
+```bash
+docker compose run --rm --user 33:33 wpcli wp eval-file /var/www/html/scripts/import-menswear-categories.php
+docker compose run --rm --user 33:33 wpcli wp eval-file /var/www/html/scripts/import-menswear-products.php
+docker compose run --rm --user 33:33 wpcli wp eval-file /var/www/html/scripts/complete-menswear-store.php
+docker compose run --rm --user 33:33 wpcli wp eval-file /var/www/html/scripts/configure-rank-math.php
+```
+
+Los importadores usan marcas internas para evitar duplicar sus propios adjuntos.

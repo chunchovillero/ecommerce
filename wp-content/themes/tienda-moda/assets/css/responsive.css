@@ -34,7 +34,7 @@ html{overflow-x:clip}body{overflow-wrap:break-word}button,input,select,textarea{
 	.hero-content h1{font-size:clamp(38px,13vw,58px)}
 	.section-heading{align-items:center;margin-bottom:20px}
 	.section-heading>a{flex:0 0 auto}
-	.category-card{min-height:230px}
+	.category-card{min-height:0}
 	.category-card>span:last-child{right:10px;bottom:10px;left:10px;padding:11px 8px;font-size:11px}
 	.product-card h3{font-size:13px;line-height:1.35}
 	.product-card-content{padding-top:10px}
@@ -68,8 +68,8 @@ html{overflow-x:clip}body{overflow-wrap:break-word}button,input,select,textarea{
 
 @media(max-width:360px){
 	.header-account{display:none}
-	.category-grid{grid-template-columns:1fr}
-	.category-card{min-height:320px}
+	.category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+	.category-card{min-height:0}
 	.price-fields{grid-template-columns:1fr}
 }
 

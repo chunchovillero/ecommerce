@@ -13,7 +13,8 @@ function tienda_moda_home_customize_register( $wp_customize ) {
 		array(
 			'title'       => __( 'Portada de la tienda', 'tienda-moda' ),
 			'description' => __( 'Configura el hero, promoción, beneficios e imágenes sociales.', 'tienda-moda' ),
-			'priority'    => 31,
+			'panel'       => 'tienda_moda_settings',
+			'priority'    => 50,
 		)
 	);
 
@@ -83,4 +84,3 @@ function tienda_moda_home_customize_register( $wp_customize ) {
 	}
 }
 add_action( 'customize_register', 'tienda_moda_home_customize_register' );
-

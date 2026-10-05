@@ -4,3 +4,40 @@
 .home-promo{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(400px,55vw,680px);margin:clamp(64px,9vw,128px) 0;padding:40px var(--page-gutter);overflow:hidden;background:#222;color:#fff;text-align:center}.home-promo.has-image::before{position:absolute;inset:0;z-index:1;content:"";background:rgba(0,0,0,.3)}.promo-media{position:absolute;inset:0;z-index:0}.promo-image{width:100%;height:100%;object-fit:cover}.home-promo>.promo-content{position:relative;z-index:2;max-width:720px}.home-promo h2{margin:0;font-size:clamp(40px,7vw,88px);font-weight:500;line-height:1}.home-promo p{margin:20px 0 28px;font-size:clamp(16px,2vw,22px)}
 .benefits-section{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(64px,9vw,128px);background:#ddd;border-block:1px solid #ddd}.benefit{display:flex;min-height:180px;padding:32px;flex-direction:column;align-items:center;justify-content:center;background:#fff;text-align:center}.benefit .icon{width:30px;height:30px;margin-bottom:16px}.benefit h2{margin:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase}.social-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.social-grid img{width:100%;aspect-ratio:1;object-fit:cover}
 @media(max-width:900px){.product-grid{grid-template-columns:repeat(3,1fr)}.benefits-section{grid-template-columns:repeat(2,1fr)}.social-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:600px){.home-hero{min-height:70svh}.category-grid{grid-template-columns:repeat(2,1fr);gap:8px}.category-card{min-height:280px}.product-grid{grid-template-columns:repeat(2,1fr);gap:20px 10px}.home-section,.social-section{padding-inline:12px}.benefit{min-height:150px;padding:22px 12px}.social-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Compact merchandising layout: more products visible without oversized cards. */
+.home-section,.social-section{margin-block:clamp(48px,6vw,88px)}
+.section-heading{margin-bottom:20px}.section-heading h2{font-size:clamp(24px,2.4vw,34px)}
+.category-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.category-card{min-height:0;aspect-ratio:5/6}
+.category-card>span:last-child{right:12px;bottom:12px;left:12px;padding:10px 12px;font-size:11px}
+.product-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:28px 14px}
+
+@media(max-width:1050px){.category-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.product-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 10px}}
+@media(max-width:520px){.category-grid,.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.category-card{aspect-ratio:5/6}}
+
+/* Contemporary menswear direction. */
+.home-hero{background:var(--color-accent);color:var(--color-on-accent)}
+.home-hero.has-image::before{background:linear-gradient(90deg,rgba(12,20,28,.72),rgba(12,20,28,.12) 72%)}
+.hero-content h1{max-width:720px;font-weight:600;letter-spacing:-.045em}
+.hero-content p{color:color-mix(in srgb,var(--color-on-accent) 82%,transparent);font-size:clamp(15px,1.6vw,19px)}
+.button-primary{min-height:44px;padding:11px 24px;border-color:var(--color-accent);background:var(--color-accent);color:var(--color-on-accent);letter-spacing:.14em}
+.button-primary:hover{background:transparent;color:var(--color-accent)}
+.home-hero .button-primary{border-color:var(--color-on-accent);background:var(--color-on-accent);color:var(--color-accent)}
+.home-hero .button-primary:hover{background:transparent;color:var(--color-on-accent)}
+.section-heading{padding-bottom:12px;border-bottom:1px solid color-mix(in srgb,var(--color-text) 22%,transparent)}
+.section-heading h2{font-weight:650;letter-spacing:.035em;text-transform:uppercase}
+.category-card{background:var(--color-surface)}
+.category-card::after{position:absolute;inset:55% 0 0;content:"";background:linear-gradient(transparent,rgba(10,17,23,.64));pointer-events:none}
+.category-card>span:last-child{z-index:1;right:0;bottom:0;left:0;padding:16px;background:transparent;color:#fff;text-align:left;letter-spacing:.14em}
+.home-promo{background:var(--color-accent)}
+.home-promo.has-image::before{background:rgba(10,18,25,.5)}
+.benefits-section{background:color-mix(in srgb,var(--color-text) 18%,transparent);border-color:color-mix(in srgb,var(--color-text) 18%,transparent)}
+.benefit{background:var(--color-background)}
+
+/* Editorial hero sized to reveal products sooner on desktop. */
+.home-hero{min-height:clamp(500px,58vw,680px)}
+.home-hero.has-image::before{background:linear-gradient(90deg,rgba(9,18,27,.28),rgba(9,18,27,.04) 64%)}
+.hero-content h1{max-width:610px;font-size:clamp(42px,5.8vw,78px)}
+.hero-content p{max-width:480px}

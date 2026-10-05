@@ -5,6 +5,7 @@ $account_url = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalin
 $cart_url    = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/' );
 $shop_url    = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/' );
 $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
+$notice_url  = get_theme_mod( 'tienda_moda_announcement_url', '' );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -16,9 +17,9 @@ $notice      = get_theme_mod( 'tienda_moda_announcement', '' );
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#site-content"><?php esc_html_e( 'Saltar al contenido', 'tienda-moda' ); ?></a>
 
-<?php if ( $notice ) : ?>
+<?php if ( $notice && get_theme_mod( 'tienda_moda_show_announcement', true ) ) : ?>
 	<div class="announcement-bar" role="region" aria-label="<?php esc_attr_e( 'Aviso de la tienda', 'tienda-moda' ); ?>">
-		<p><?php echo esc_html( $notice ); ?></p>
+		<p><?php if ( $notice_url ) : ?><a href="<?php echo esc_url( $notice_url ); ?>"><?php endif; ?><?php echo esc_html( $notice ); ?><?php if ( $notice_url ) : ?></a><?php endif; ?></p>
 	</div>
 <?php endif; ?>
 
